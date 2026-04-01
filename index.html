@@ -7,312 +7,166 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --navy:      #081C37;
-  --cta:       #AF141C;
-  --cta-dark:  #8B1015;
-  --blue-1:    #015AA5;
-  --gray-bg:   #F4F2EC;
-  --gray-0:    #F5F2ED;
-  --gray-1:    #DDDAD3;
-  --gray-2:    #E8E6DF;
-  --gray-6:    #E0E4E4;
-  --gray-7:    #CCCCCC;
-  --gray-8:    #666666;
-  --gray-9:    #B1B5AF;
-  --white:     #FFFFFF;
-  --green:     #2A7A2E;
-  --warn-bg:   #FEF9ED;
-  --warn-bd:   #E8C84A;
-  --warn-tx:   #6B4E00;
-  --font:      'Montserrat', Arial, sans-serif;
-  --serif:     'Lora', Georgia, serif;
+  --navy:#081C37; --cta:#AF141C; --blue-1:#015AA5;
+  --gray-bg:#F4F2EC; --gray-0:#F5F2ED; --gray-1:#DDDAD3;
+  --gray-2:#E8E6DF; --gray-6:#E0E4E4; --gray-7:#CCCCCC;
+  --gray-8:#666666; --gray-9:#B1B5AF; --white:#FFFFFF;
+  --green:#2A7A2E; --warn-bg:#FEF9ED; --warn-bd:#E8C84A; --warn-tx:#6B4E00;
+  --font:'Montserrat',Arial,sans-serif; --serif:'Lora',Georgia,serif;
 }
+body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.hdr { background:var(--white); border-bottom:1px solid var(--gray-6); height:60px; padding:0 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.hdr-logo { font-weight:700; font-size:22px; color:var(--navy); text-decoration:none; letter-spacing:-.5px; }
+.hdr-mid { display:flex; align-items:center; gap:12px; font-size:12.5px; }
+.hdr-avatar { width:34px; height:34px; border-radius:50%; background:var(--gray-1); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--gray-8); }
+.hdr-phone { background:var(--navy); color:var(--white); padding:3px 12px; border-radius:20px; font-size:11.5px; font-weight:600; text-decoration:none; }
+.hdr-right { font-size:13px; display:flex; gap:16px; align-items:center; }
+.layout { display:flex; min-height:calc(100vh - 60px); }
+.sb { width:215px; flex-shrink:0; background:var(--white); border-right:1px solid var(--gray-6); padding:24px 0; }
+.sb-nav { list-style:none; }
+.sb-nav a { display:block; padding:10px 20px; font-size:13px; font-weight:500; color:var(--navy); text-decoration:none; transition:background .12s; border-left:3px solid transparent; }
+.sb-nav a:hover { background:var(--gray-0); }
+.sb-nav a.active { color:var(--cta); font-weight:700; background:var(--gray-bg); border-left-color:var(--cta); }
+.sb-nav .muted { color:var(--gray-8); font-size:11.5px; padding:8px 20px; display:block; }
+.sb-sep { height:1px; background:var(--gray-1); margin:8px 0; }
+.main { flex:1; padding:36px 48px 72px; max-width:800px; }
+.bc { font-size:12px; color:var(--gray-8); margin-bottom:22px; display:flex; gap:7px; align-items:center; }
+.bc a { color:var(--blue-1); text-decoration:none; }
+.ph { margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--gray-1); }
+.ph-title { font-size:26px; font-weight:700; color:var(--navy); margin-bottom:10px; }
+.ph-hook { font-size:15px; color:var(--navy); line-height:1.7; font-weight:500; margin-bottom:8px; }
+.ph-note { font-family:var(--serif); font-style:italic; font-size:13.5px; color:var(--gray-8); }
+.gp { display:flex; align-items:center; gap:14px; margin-bottom:30px; background:var(--white); border:1px solid var(--gray-6); border-radius:4px; padding:12px 18px; }
+.gp-label { font-size:12px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.8px; white-space:nowrap; }
+.gp-bar { flex:1; height:5px; background:var(--gray-1); border-radius:99px; overflow:hidden; }
+.gp-fill { height:100%; background:var(--cta); border-radius:99px; transition:width .35s ease; width:0%; }
+.gp-count { font-size:12.5px; font-weight:700; color:var(--cta); min-width:52px; text-align:right; }
+.bloc { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; margin-bottom:12px; overflow:hidden; transition:box-shadow .15s; }
+.bloc:hover { box-shadow:0 2px 8px rgba(8,28,55,.06); }
+.bloc-hdr { display:flex; align-items:center; cursor:pointer; user-select:none; }
+.bloc-accent { width:4px; align-self:stretch; background:var(--gray-1); flex-shrink:0; transition:background .2s; }
+.bloc.done .bloc-accent { background:var(--green); }
+.bloc.partial .bloc-accent { background:var(--warn-bd); }
+.bloc-hdr-inner { flex:1; display:flex; align-items:center; gap:14px; padding:16px 20px; transition:background .1s; }
+.bloc-hdr-inner:hover { background:var(--gray-0); }
+.bloc-num { width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gray-1); background:var(--white); color:var(--navy); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .2s; }
+.bloc.done .bloc-num { background:var(--green); border-color:var(--green); color:var(--white); }
+.bloc.partial .bloc-num { background:var(--warn-bg); border-color:var(--warn-bd); color:var(--warn-tx); }
+.bloc-info { flex:1; }
+.bloc-title { font-size:14.5px; font-weight:700; color:var(--navy); }
+.bloc-status { font-size:11.5px; color:var(--gray-9); margin-top:2px; font-weight:500; }
+.bloc.done .bloc-status { color:var(--green); }
+.bloc.partial .bloc-status { color:#9A6B00; }
+.bloc-chevron { font-size:10px; color:var(--gray-9); transition:transform .2s; padding:16px 20px 16px 0; }
+.bloc-chevron.open { transform:rotate(180deg); }
+.bloc-body { display:none; }
+.bloc-body.open { display:block; }
+.bloc-content { padding:22px 24px 22px 28px; border-top:1px solid var(--gray-1); }
+.ss { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.1px; color:var(--gray-8); margin:18px 0 7px; }
+.ss:first-child { margin-top:0; }
+.t { font-size:14px; color:var(--navy); line-height:1.65; margin-bottom:8px; }
+.tm { font-size:13px; color:var(--gray-8); line-height:1.6; margin-bottom:8px; }
+.bl { list-style:none; margin:6px 0 10px; display:flex; flex-direction:column; gap:5px; }
+.bl li { display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--navy); line-height:1.55; }
+.bl li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--cta); flex-shrink:0; margin-top:8px; }
+.sep { height:1px; background:var(--gray-1); margin:16px 0; }
+.eml { display:inline-flex; align-items:center; gap:6px; color:var(--blue-1); font-size:13.5px; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(1,90,165,.3); padding-bottom:1px; transition:border-color .15s; margin:4px 0 10px; }
+.eml:hover { border-color:var(--blue-1); }
+.action-label { display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:700; color:var(--cta); margin:12px 0 6px; }
+.action-label::before { content:''; width:3px; height:14px; background:var(--cta); border-radius:2px; flex-shrink:0; }
+.warn { display:flex; align-items:flex-start; gap:10px; padding:10px 14px; background:var(--warn-bg); border:1px solid var(--warn-bd); border-radius:3px; font-size:13px; color:var(--warn-tx); line-height:1.5; margin:12px 0; }
+.warn-icon { width:16px; height:16px; border-radius:50%; background:var(--warn-bd); color:var(--warn-tx); font-size:10px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+.cz { margin-top:16px; border:1px solid var(--gray-1); border-radius:3px; overflow:hidden; }
+.cz-hdr { background:var(--gray-bg); padding:9px 14px; display:flex; align-items:center; justify-content:space-between; }
+.cz-hdr-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--gray-8); }
+.cz-hdr-prog { font-size:11px; font-weight:700; color:var(--gray-8); }
+.skip-row { display:flex; align-items:center; gap:10px; padding:9px 14px; background:var(--gray-0); border-bottom:1px solid var(--gray-1); cursor:pointer; transition:background .1s; font-size:13px; color:var(--gray-8); font-style:italic; }
+.skip-row:hover { background:var(--gray-2); }
+.skip-row.active { background:var(--gray-2); }
+.skip-box { width:19px; height:19px; border:1.5px solid var(--gray-7); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--white); transition:all .15s; }
+.skip-row.active .skip-box { background:var(--gray-7); border-color:var(--gray-7); }
+.skip-row.active .skip-box::after { content:'–'; color:white; font-size:13px; font-weight:700; line-height:1; }
+.ci-list { list-style:none; }
+.ci { display:flex; align-items:center; gap:12px; padding:10px 14px; border-bottom:1px solid var(--gray-0); cursor:pointer; transition:background .1s; font-size:13.5px; color:var(--navy); line-height:1.4; }
+.ci:last-child { border-bottom:none; }
+.ci:hover { background:var(--gray-0); }
+.ci-box { width:19px; height:19px; border:1.5px solid var(--gray-7); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--white); transition:all .15s; }
+.ci.ok .ci-box { background:var(--green); border-color:var(--green); }
+.ci.ok .ci-box::after { content:''; width:5px; height:9px; border-right:2px solid white; border-bottom:2px solid white; transform:rotate(45deg) translate(-1px,-1px); }
+.ci.ok .ci-label { text-decoration:line-through; color:var(--gray-9); }
+.ci-label { flex:1; }
+.sub-bloc { border:1px solid var(--gray-1); border-radius:3px; overflow:hidden; margin-top:8px; }
 
-body {
-  font-family: var(--font);
-  background: var(--gray-bg);
-  color: var(--navy);
-  font-size: 15px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
+/* ── VOLS RADIO BOUTONS ── */
+.vols-choix { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+.vols-btn {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 16px;
+  border:1.5px solid var(--gray-1);
+  border-radius:4px;
+  background:var(--white);
+  cursor:pointer;
+  transition:border-color .15s, background .15s;
+  user-select:none;
 }
+.vols-btn:hover { border-color:var(--gray-7); background:var(--gray-0); }
+.vols-btn.sel-oui { border-color:var(--navy); background:#EEF1F6; }
+.vols-btn.sel-non { border-color:var(--cta);  background:#FBF0F0; }
+.vols-dot {
+  width:20px; height:20px;
+  border-radius:50%;
+  border:2px solid var(--gray-7);
+  flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  transition:border-color .15s;
+  background:var(--white);
+  pointer-events:none;
+}
+.vols-btn.sel-oui .vols-dot { border-color:var(--navy); }
+.vols-btn.sel-oui .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:var(--navy); display:block; }
+.vols-btn.sel-non .vols-dot { border-color:var(--cta); }
+.vols-btn.sel-non .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:var(--cta); display:block; }
+.vols-btn-main { font-size:13.5px; font-weight:600; color:var(--navy); }
+.vols-btn-sub  { font-size:12px; color:var(--gray-8); margin-top:2px; }
 
-/* HEADER */
-.hdr {
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-6);
-  height: 60px;
-  padding: 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-}
-.hdr-logo { font-weight: 700; font-size: 22px; color: var(--navy); text-decoration: none; letter-spacing: -0.5px; }
-.hdr-mid { display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: var(--navy); }
-.hdr-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--gray-1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: var(--gray-8); letter-spacing: 0.5px;
-}
-.hdr-phone {
-  background: var(--navy); color: var(--white);
-  padding: 3px 12px; border-radius: 20px;
-  font-size: 11.5px; font-weight: 600; text-decoration: none; letter-spacing: 0.2px;
-}
-.hdr-right { font-size: 13px; color: var(--navy); display: flex; gap: 16px; align-items: center; }
-
-/* LAYOUT */
-.layout { display: flex; min-height: calc(100vh - 60px); }
-
-/* SIDEBAR */
-.sb { width: 215px; flex-shrink: 0; background: var(--white); border-right: 1px solid var(--gray-6); padding: 24px 0; }
-.sb-nav { list-style: none; }
-.sb-nav a {
-  display: block; padding: 10px 20px;
-  font-size: 13px; font-weight: 500; color: var(--navy);
-  text-decoration: none; transition: background 0.12s;
-  border-left: 3px solid transparent;
-}
-.sb-nav a:hover { background: var(--gray-0); }
-.sb-nav a.active { color: var(--cta); font-weight: 700; background: var(--gray-bg); border-left-color: var(--cta); }
-.sb-nav .muted { color: var(--gray-8); font-size: 11.5px; padding: 8px 20px; display: block; }
-.sb-sep { height: 1px; background: var(--gray-1); margin: 8px 0; }
-
-/* MAIN */
-.main { flex: 1; padding: 36px 48px 72px; max-width: 800px; }
-
-/* BREADCRUMB */
-.bc { font-size: 12px; color: var(--gray-8); margin-bottom: 22px; display: flex; gap: 7px; align-items: center; }
-.bc a { color: var(--blue-1); text-decoration: none; }
-.bc a:hover { text-decoration: underline; }
-.bc-sep { color: var(--gray-7); }
-
-/* PAGE HEADER */
-.ph { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-1); }
-.ph-title { font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
-.ph-hook { font-size: 15px; color: var(--navy); line-height: 1.7; margin-bottom: 8px; font-weight: 500; }
-.ph-note {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 13.5px;
-  color: var(--gray-8);
-  margin-top: 10px;
-}
-
-/* GLOBAL PROGRESS */
-.gp {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 30px;
-  background: var(--white); border: 1px solid var(--gray-6); border-radius: 4px; padding: 12px 18px;
-}
-.gp-label { font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; }
-.gp-bar { flex: 1; height: 5px; background: var(--gray-1); border-radius: 99px; overflow: hidden; }
-.gp-fill { height: 100%; background: var(--cta); border-radius: 99px; transition: width 0.35s ease; width: 0%; }
-.gp-count { font-size: 12.5px; font-weight: 700; color: var(--cta); min-width: 42px; text-align: right; white-space: nowrap; }
-
-/* BLOC */
-.bloc {
-  background: var(--white); border: 1px solid var(--gray-6); border-radius: 2px;
-  margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.15s;
-}
-.bloc:hover { box-shadow: 0 2px 8px rgba(8,28,55,0.06); }
-.bloc-hdr { display: flex; align-items: center; cursor: pointer; user-select: none; }
-.bloc-accent { width: 4px; align-self: stretch; background: var(--gray-1); flex-shrink: 0; transition: background 0.2s; }
-.bloc.done .bloc-accent { background: var(--green); }
-.bloc.partial .bloc-accent { background: var(--warn-bd); }
-.bloc-hdr-inner { flex: 1; display: flex; align-items: center; gap: 14px; padding: 16px 20px; transition: background 0.1s; }
-.bloc-hdr-inner:hover { background: var(--gray-0); }
-.bloc-num {
-  width: 28px; height: 28px; border-radius: 50%;
-  border: 1.5px solid var(--gray-1); background: var(--white);
-  color: var(--navy); font-size: 12px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: all 0.2s;
-}
-.bloc.done .bloc-num { background: var(--green); border-color: var(--green); color: var(--white); }
-.bloc.partial .bloc-num { background: var(--warn-bg); border-color: var(--warn-bd); color: var(--warn-tx); }
-.bloc-info { flex: 1; }
-.bloc-title { font-size: 14.5px; font-weight: 700; color: var(--navy); line-height: 1.2; }
-.bloc-status { font-size: 11.5px; color: var(--gray-9); margin-top: 2px; font-weight: 500; }
-.bloc.done .bloc-status { color: var(--green); }
-.bloc.partial .bloc-status { color: #9A6B00; }
-.bloc-chevron { font-size: 10px; color: var(--gray-9); transition: transform 0.2s; padding: 16px 20px 16px 0; }
-.bloc-chevron.open { transform: rotate(180deg); }
-
-/* BLOC BODY */
-.bloc-body { display: none; }
-.bloc-body.open { display: block; }
-.bloc-content { padding: 22px 24px 22px 28px; border-top: 1px solid var(--gray-1); }
-
-/* SUBSECTION */
-.ss { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--gray-8); margin: 22px 0 8px; }
-.ss:first-child { margin-top: 0; }
-
-/* TEXT */
-.t { font-size: 14px; color: var(--navy); line-height: 1.65; margin-bottom: 8px; }
-.tm { font-size: 13px; color: var(--gray-8); line-height: 1.6; margin-bottom: 8px; }
-
-/* BULLET */
-.bl { list-style: none; margin: 6px 0 10px; display: flex; flex-direction: column; gap: 5px; }
-.bl li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--navy); line-height: 1.55; }
-.bl li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--cta); flex-shrink: 0; margin-top: 8px; }
-
-/* WARN */
-.warn {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px 14px;
-  background: var(--warn-bg); border: 1px solid var(--warn-bd); border-radius: 3px;
-  font-size: 13px; color: var(--warn-tx); line-height: 1.5; margin: 12px 0;
-}
-.warn-icon {
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--warn-bd); color: var(--warn-tx);
-  font-size: 10px; font-weight: 900;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 1px;
-}
-
-/* EMAIL */
-.eml {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--blue-1); font-size: 13.5px; font-weight: 600;
-  text-decoration: none; border-bottom: 1px solid rgba(1,90,165,0.3);
-  padding-bottom: 1px; transition: border-color 0.15s; margin: 4px 0 10px;
-}
-.eml:hover { border-color: var(--blue-1); }
-
-/* ACTION LABEL */
-.action-label {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 13px; font-weight: 700; color: var(--cta);
-  margin: 12px 0 6px; letter-spacing: 0.1px;
-}
-.action-label::before { content: ''; width: 3px; height: 14px; background: var(--cta); border-radius: 2px; flex-shrink: 0; }
-
-/* SEP */
-.sep { height: 1px; background: var(--gray-1); margin: 18px 0; }
-
-/* SOUS-BLOC — pour check-list inline par sous-partie */
-.sub-bloc {
-  border: 1px solid var(--gray-1);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-top: 10px;
-  margin-bottom: 4px;
-}
-.sub-bloc-hdr {
-  background: var(--gray-bg);
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.sub-bloc-title {
-  font-size: 10.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--gray-8);
-}
-.sub-bloc-prog {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray-8);
-}
-
-/* SKIP ROW */
-.skip-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 14px;
-  background: var(--gray-0); border-bottom: 1px solid var(--gray-1);
-  cursor: pointer; transition: background 0.1s;
-  font-size: 13px; color: var(--gray-8); font-style: italic;
-}
-.skip-row:hover { background: var(--gray-2); }
-.skip-row.active { background: var(--gray-2); }
-.skip-box {
-  width: 19px; height: 19px;
-  border: 1.5px solid var(--gray-7); border-radius: 3px;
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--white); transition: all 0.15s;
-  font-size: 13px; font-weight: 700; color: white;
-}
-.skip-row.active .skip-box { background: var(--gray-7); border-color: var(--gray-7); }
-
-/* CHECK ITEMS */
-.ci-list { list-style: none; }
-.ci {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--gray-0);
-  cursor: pointer; transition: background 0.1s;
-  font-size: 13.5px; color: var(--navy); line-height: 1.4;
-}
-.ci:last-child { border-bottom: none; }
-.ci:hover { background: var(--gray-0); }
-.ci-box {
-  width: 19px; height: 19px;
-  border: 1.5px solid var(--gray-7); border-radius: 3px;
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--white); transition: all 0.15s;
-}
-.ci.ok .ci-box { background: var(--green); border-color: var(--green); }
-.ci.ok .ci-box::after {
-  content: '';
-  width: 5px; height: 9px;
-  border-right: 2px solid white; border-bottom: 2px solid white;
-  transform: rotate(45deg) translate(-1px, -1px);
-}
-.ci.ok .ci-label { text-decoration: line-through; color: var(--gray-9); }
-.ci-label { flex: 1; }
-
-/* CHECK ZONE GLOBALE (pour passeport, visa, infos) */
-.cz { margin-top: 16px; border: 1px solid var(--gray-1); border-radius: 3px; overflow: hidden; }
-.cz-hdr { background: var(--gray-bg); padding: 9px 14px; display: flex; align-items: center; justify-content: space-between; }
-.cz-hdr-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-8); }
-.cz-hdr-prog { font-size: 11px; font-weight: 700; color: var(--gray-8); }
+/* ── CAS DÉROULANT ── */
+.cas-wrap { overflow:hidden; max-height:0; opacity:0; transition:max-height .4s ease, opacity .3s ease; }
+.cas-wrap.open { max-height:1500px; opacity:1; }
+.cas-intro { border-radius:3px; padding:13px 16px; margin-bottom:16px; font-size:13.5px; line-height:1.6; color:var(--navy); }
+.cas-intro.navy { background:#EEF1F6; border:1px solid var(--gray-1); border-left:3px solid var(--navy); }
+.cas-intro.rouge { background:#FBF0F0; border:1px solid #F0CECE; border-left:3px solid var(--cta); }
 
 /* RECAP */
-.recap { background: var(--white); border: 1px solid var(--gray-6); border-radius: 2px; margin: 28px 0 14px; overflow: hidden; }
-.recap-hdr { background: var(--navy); padding: 14px 20px; display: flex; align-items: center; gap: 14px; }
-.recap-hdr-title { font-size: 13.5px; font-weight: 700; color: var(--white); white-space: nowrap; }
-.recap-bar { flex: 1; height: 4px; background: rgba(255,255,255,0.15); border-radius: 99px; overflow: hidden; }
-.recap-fill { height: 100%; background: #5cb85c; border-radius: 99px; transition: width 0.35s; }
-.recap-count { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); white-space: nowrap; }
-.recap-body { padding: 6px 0; }
-.recap-item { display: flex; align-items: center; gap: 12px; padding: 9px 20px; font-size: 13.5px; color: var(--navy); border-bottom: 1px solid var(--gray-0); }
-.recap-item:last-child { border-bottom: none; }
-.recap-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gray-7); flex-shrink: 0; transition: background 0.2s; }
-.recap-item.ok .recap-dot { background: var(--green); }
-.recap-item.ok .recap-label { color: var(--gray-8); text-decoration: line-through; }
-.recap-item.skip .recap-dot { background: var(--gray-9); }
-.recap-item.skip .recap-label { color: var(--gray-9); font-style: italic; }
-.recap-label { flex: 1; }
-.recap-tag { font-size: 11px; color: var(--gray-8); font-style: italic; }
-
-/* BON À SAVOIR */
-.bas-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px; color: var(--gray-9); margin: 30px 0 12px; }
-.bas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-.bas-card { background: var(--white); border: 1px solid var(--gray-6); border-radius: 2px; padding: 16px 18px; }
-.bas-card-title { font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-.bas-card-text { font-size: 13px; color: var(--gray-8); line-height: 1.6; }
-
-/* HELP */
-.help { background: var(--navy); border-radius: 2px; padding: 18px 22px; margin-top: 20px; display: flex; align-items: center; gap: 16px; }
-.help-txt { flex: 1; }
-.help-title { font-size: 13.5px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
-.help-sub { font-size: 12.5px; color: rgba(255,255,255,0.6); }
-.help-link { color: var(--white); font-size: 13px; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 1px; white-space: nowrap; transition: border-color 0.15s; }
-.help-link:hover { border-color: white; }
+.recap { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; margin:28px 0 14px; overflow:hidden; }
+.recap-hdr { background:var(--navy); padding:14px 20px; display:flex; align-items:center; gap:14px; }
+.recap-hdr-title { font-size:13.5px; font-weight:700; color:var(--white); white-space:nowrap; }
+.recap-bar { flex:1; height:4px; background:rgba(255,255,255,.15); border-radius:99px; overflow:hidden; }
+.recap-fill { height:100%; background:#5cb85c; border-radius:99px; transition:width .35s; }
+.recap-count { font-size:12px; font-weight:700; color:rgba(255,255,255,.8); white-space:nowrap; }
+.recap-body { padding:6px 0; }
+.recap-item { display:flex; align-items:center; gap:12px; padding:9px 20px; font-size:13.5px; color:var(--navy); border-bottom:1px solid var(--gray-0); }
+.recap-item:last-child { border-bottom:none; }
+.recap-dot { width:7px; height:7px; border-radius:50%; background:var(--gray-7); flex-shrink:0; transition:background .2s; }
+.recap-item.ok .recap-dot { background:var(--green); }
+.recap-item.ok .recap-label { color:var(--gray-8); text-decoration:line-through; }
+.recap-item.skip .recap-dot { background:var(--gray-9); }
+.recap-item.skip .recap-label { color:var(--gray-9); font-style:italic; }
+.recap-label { flex:1; }
+.recap-tag { font-size:11px; color:var(--gray-8); font-style:italic; }
+.bas-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.1px; color:var(--gray-9); margin:30px 0 12px; }
+.bas-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
+.bas-card { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; padding:16px 18px; }
+.bas-card-title { font-size:12px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+.bas-card-text { font-size:13px; color:var(--gray-8); line-height:1.6; }
+.help { background:var(--navy); border-radius:2px; padding:18px 22px; margin-top:20px; display:flex; align-items:center; gap:16px; }
+.help-txt { flex:1; }
+.help-title { font-size:13.5px; font-weight:700; color:var(--white); margin-bottom:2px; }
+.help-sub { font-size:12.5px; color:rgba(255,255,255,.6); }
+.help-link { color:var(--white); font-size:13px; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.4); padding-bottom:1px; }
+.help-link:hover { border-color:white; }
 </style>
 </head>
 <body>
@@ -329,12 +183,11 @@ body {
   </div>
   <div class="hdr-right">
     <span style="font-size:12px;">fr</span>
-    <span style="font-weight:600;font-size:13px;">Bonjour</span>
+    <span style="font-weight:600;">Bonjour</span>
   </div>
 </header>
 
 <div class="layout">
-
   <aside class="sb">
     <ul class="sb-nav">
       <li><a href="#">&rsaquo; Mes réservations</a></li>
@@ -364,31 +217,30 @@ body {
   </aside>
 
   <main class="main">
-
     <nav class="bc">
       <a href="#">Espace client</a>
-      <span class="bc-sep">&rsaquo;</span>
+      <span style="color:var(--gray-7);">&rsaquo;</span>
       <span>Préparer ma croisière</span>
     </nav>
 
     <div class="ph">
       <h1 class="ph-title">Préparer ma croisière</h1>
-      <p class="ph-hook">Le départ approche. Plus que quelques détails à régler, et la croisière peut commencer. Suivez ces 4 étapes et cochez chaque point pour partir l'esprit tranquille.</p>
+      <p class="ph-hook">Le départ approche. Suivez ces 4 étapes et cochez chaque point pour partir l'esprit tranquille.</p>
       <p class="ph-note">Certaines rubriques peuvent ne pas vous concerner — une case "Je passe à la suite" vous permet de continuer.</p>
     </div>
 
     <div class="gp">
       <span class="gp-label">Progression</span>
       <div class="gp-bar"><div class="gp-fill" id="gFill"></div></div>
-      <span class="gp-count" id="gCount">0 / 11</span>
+      <span class="gp-count" id="gCount">0 / —</span>
     </div>
 
-    <!-- ══ BLOC 1 — PASSEPORT ══ -->
+    <!-- BLOC 1 — PASSEPORT -->
     <div class="bloc" id="b-pass">
       <div class="bloc-hdr" onclick="toggleBloc('pass')">
         <div class="bloc-accent"></div>
         <div class="bloc-hdr-inner">
-          <div class="bloc-num" id="bn-pass">1</div>
+          <div class="bloc-num">1</div>
           <div class="bloc-info">
             <div class="bloc-title">Passeport</div>
             <div class="bloc-status" id="bs-pass">À compléter</div>
@@ -401,8 +253,7 @@ body {
           <p class="t">Selon votre destination, le passeport peut être obligatoire — c'est dans tous les cas le document que nous utilisons pour organiser votre accueil, vos transferts et votre embarquement.</p>
           <div class="action-label">L'action à faire — envoyer la copie du passeport à la conciergerie</div>
           <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a>
-
-          <div class="cz" id="cz-pass">
+          <div class="cz">
             <div class="cz-hdr">
               <span class="cz-hdr-title">Ma check-list passeport</span>
               <span class="cz-hdr-prog" id="czp-pass">0 / 4</span>
@@ -422,12 +273,12 @@ body {
       </div>
     </div>
 
-    <!-- ══ BLOC 2 — VOLS ══ -->
+    <!-- BLOC 2 — VOLS -->
     <div class="bloc" id="b-vols">
       <div class="bloc-hdr" onclick="toggleBloc('vols')">
         <div class="bloc-accent"></div>
         <div class="bloc-hdr-inner">
-          <div class="bloc-num" id="bn-vols">2</div>
+          <div class="bloc-num">2</div>
           <div class="bloc-info">
             <div class="bloc-title">Vols et transferts</div>
             <div class="bloc-status" id="bs-vols">À compléter</div>
@@ -437,71 +288,87 @@ body {
       </div>
       <div class="bloc-body open" id="bb-vols">
         <div class="bloc-content">
+          <p class="t" style="font-weight:600;margin-bottom:14px;">Filovent a-t-il réservé vos vols ?</p>
 
-          <!-- Skip global vols -->
-          <div class="sub-bloc" style="margin-bottom:18px;">
-            <div class="sub-bloc-hdr">
-              <span class="sub-bloc-title">Filovent a réservé mes vols</span>
+          <div class="vols-choix">
+            <div class="vols-btn" id="btn-oui">
+              <div class="vols-dot" id="dot-oui"></div>
+              <div>
+                <div class="vols-btn-main">Oui, Filovent a réservé mes vols</div>
+                <div class="vols-btn-sub">Vos billets sont entre nos mains</div>
+              </div>
             </div>
-            <div class="skip-row" id="skip-vols" onclick="toggleSkip('vols')" style="border-bottom:none;">
-              <div class="skip-box" id="sb-vols"></div>
-              <span>Je passe à la suite en cochant cette case</span>
+            <div class="vols-btn" id="btn-non">
+              <div class="vols-dot" id="dot-non"></div>
+              <div>
+                <div class="vols-btn-main">Non, j'ai réservé mes vols moi-même</div>
+                <div class="vols-btn-sub">Quelques informations à nous transmettre</div>
+              </div>
             </div>
           </div>
 
-          <!-- Sous-partie 1 : Infos de vol -->
-          <div class="ss">Vos vols ne sont pas réservés par Filovent ?</div>
-          <p class="t">Transmettez-nous dès que possible : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. Cela nous permet d'organiser vos transferts dans les meilleures conditions.</p>
-          <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a>
-          <div class="sub-bloc" id="sb-bloc-v1">
-            <ul class="ci-list" id="cl-v1">
-              <li class="ci" onclick="toggleSubCI(this,'vols','v1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis mes informations de vol à concierge@filovent.com</span></li>
-            </ul>
+          <!-- CAS OUI -->
+          <div class="cas-wrap" id="cas-oui">
+            <div class="cas-intro navy">Vos billets sont entre nos mains — vous n'avez rien à nous transmettre. Il reste simplement deux choses à faire de votre côté.</div>
+            <div class="ss" style="margin-top:0;">Enregistrement</div>
+            <p class="t">L'enregistrement est à faire vous-même en ligne, sur le site de la compagnie aérienne, la veille du départ.</p>
+            <div class="sub-bloc">
+              <ul class="ci-list" id="cl-vb1">
+                <li class="ci" onclick="toggleSubCI(this,'vb1')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="ss">Transferts inclus</div>
+            <p class="t">S'ils sont inclus dans votre programme, retrouvez-les dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</p>
+            <div class="sub-bloc">
+              <ul class="ci-list" id="cl-vb2">
+                <li class="ci" onclick="toggleSubCI(this,'vb2')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
+              </ul>
+            </div>
           </div>
 
-          <div class="sep"></div>
-
-          <!-- Sous-partie 2 : Enregistrement -->
-          <div class="ss">Enregistrement</div>
-          <p class="t">Faites-le en ligne sur le site de votre compagnie aérienne avant le départ. Cette étape n'est pas nécessaire pour les vols charter.</p>
-          <div class="sub-bloc" id="sb-bloc-v2">
-            <ul class="ci-list" id="cl-v2">
-              <li class="ci" onclick="toggleSubCI(this,'vols','v2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
-            </ul>
-          </div>
-
-          <div class="sep"></div>
-
-          <!-- Sous-partie 3 : Transferts -->
-          <div class="ss">Transferts inclus</div>
-          <p class="t">Retrouvez-les dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</p>
-          <div class="sub-bloc" id="sb-bloc-v3">
-            <ul class="ci-list" id="cl-v3">
-              <li class="ci" onclick="toggleSubCI(this,'vols','v3')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
-            </ul>
-          </div>
-
-          <div class="sep"></div>
-
-          <!-- Sous-partie 4 : Retard -->
-          <div class="ss">Retard ou modification de vol</div>
-          <p class="t">Contactez-nous immédiatement. Nous adapterons l'organisation.</p>
-          <div class="sub-bloc" id="sb-bloc-v4">
-            <ul class="ci-list" id="cl-v4">
-              <li class="ci" onclick="toggleSubCI(this,'vols','v4')"><div class="ci-box"></div><span class="ci-label">Le numéro de contact Filovent est enregistré dans mon téléphone</span></li>
-            </ul>
+          <!-- CAS NON -->
+          <div class="cas-wrap" id="cas-non">
+            <div class="cas-intro rouge">Quelques informations sont à nous transmettre pour organiser au mieux votre arrivée et vos transferts.</div>
+            <div class="ss" style="margin-top:0;">Informations de vol à nous transmettre</div>
+            <p class="t">Transmettez-nous dès que possible : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. Cela nous permet d'organiser vos transferts dans les meilleures conditions.</p>
+            <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a>
+            <div class="sub-bloc">
+              <ul class="ci-list" id="cl-va1">
+                <li class="ci" onclick="toggleSubCI(this,'va1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis mes informations de vol à concierge@filovent.com</span></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="ss">Enregistrement</div>
+            <p class="t">Faites-le en ligne sur le site de votre compagnie aérienne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</p>
+            <div class="sub-bloc">
+              <ul class="ci-list" id="cl-va2">
+                <li class="ci" onclick="toggleSubCI(this,'va2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="ss">Transferts inclus</div>
+            <p class="t">S'ils sont inclus dans votre programme, retrouvez-les dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</p>
+            <div class="sub-bloc">
+              <ul class="ci-list" id="cl-va3">
+                <li class="ci" onclick="toggleSubCI(this,'va3')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="ss">Retard ou modification de vol</div>
+            <p class="t">En cas d'imprévu, contactez-nous immédiatement. Nous adapterons l'organisation.</p>
           </div>
 
         </div>
       </div>
     </div>
 
-    <!-- ══ BLOC 3 — VISA ══ -->
+    <!-- BLOC 3 — VISA -->
     <div class="bloc" id="b-visa">
       <div class="bloc-hdr" onclick="toggleBloc('visa')">
         <div class="bloc-accent"></div>
         <div class="bloc-hdr-inner">
-          <div class="bloc-num" id="bn-visa">3</div>
+          <div class="bloc-num">3</div>
           <div class="bloc-info">
             <div class="bloc-title">Visa et formalités d'entrée</div>
             <div class="bloc-status" id="bs-visa">À compléter</div>
@@ -512,11 +379,8 @@ body {
       <div class="bloc-body open" id="bb-visa">
         <div class="bloc-content">
           <p class="t">L'obligation de visa dépend de votre nationalité et de votre destination. Les démarches sont à votre charge — nous vous recommandons de les vérifier auprès des autorités officielles dès votre réservation confirmée.</p>
-          <div class="warn">
-            <div class="warn-icon">!</div>
-            <div>Certaines démarches prennent plusieurs semaines. Anticipez.</div>
-          </div>
-          <div class="cz" id="cz-visa">
+          <div class="warn"><div class="warn-icon">!</div><div>Certaines démarches prennent plusieurs semaines. Anticipez.</div></div>
+          <div class="cz">
             <div class="cz-hdr">
               <span class="cz-hdr-title">Ma check-list visa</span>
               <span class="cz-hdr-prog" id="czp-visa">0 / 2</span>
@@ -534,12 +398,12 @@ body {
       </div>
     </div>
 
-    <!-- ══ BLOC 4 — INFOS ══ -->
+    <!-- BLOC 4 — INFOS -->
     <div class="bloc" id="b-infos">
       <div class="bloc-hdr" onclick="toggleBloc('infos')">
         <div class="bloc-accent"></div>
         <div class="bloc-hdr-inner">
-          <div class="bloc-num" id="bn-infos">4</div>
+          <div class="bloc-num">4</div>
           <div class="bloc-info">
             <div class="bloc-title">Informations importantes</div>
             <div class="bloc-status" id="bs-infos">À compléter</div>
@@ -561,8 +425,7 @@ body {
           <div class="ss">Assurance voyage</div>
           <p class="t">Nous la recommandons vivement. Vous pouvez la souscrire via Filovent ou auprès de l'assureur de votre choix.</p>
           <p class="tm" style="font-style:italic;">Lien assurance à ajouter</p>
-
-          <div class="cz" id="cz-infos">
+          <div class="cz">
             <div class="cz-hdr">
               <span class="cz-hdr-title">Ma check-list informations importantes</span>
               <span class="cz-hdr-prog" id="czp-infos">0 / 3</span>
@@ -586,18 +449,17 @@ body {
       <div class="recap-hdr">
         <span class="recap-hdr-title">Récapitulatif — Vérification avant départ</span>
         <div class="recap-bar"><div class="recap-fill" id="rFill"></div></div>
-        <span class="recap-count" id="rCount">0 / 9</span>
+        <span class="recap-count" id="rCount">0 / 8</span>
       </div>
       <div class="recap-body">
         <div class="recap-item" id="r0"><div class="recap-dot"></div><span class="recap-label">Copie(s) des passeports envoyées</span><span class="recap-tag"></span></div>
         <div class="recap-item" id="r1"><div class="recap-dot"></div><span class="recap-label">Passeport valide et en règle</span><span class="recap-tag"></span></div>
         <div class="recap-item" id="r2"><div class="recap-dot"></div><span class="recap-label">Informations de vol transmises</span><span class="recap-tag">si non réservés par Filovent</span></div>
-        <div class="recap-item" id="r3"><div class="recap-dot"></div><span class="recap-label">Enregistrement prévu la veille du départ</span><span class="recap-tag">hors charter</span></div>
+        <div class="recap-item" id="r3"><div class="recap-dot"></div><span class="recap-label">Enregistrement prévu la veille du départ</span><span class="recap-tag"></span></div>
         <div class="recap-item" id="r4"><div class="recap-dot"></div><span class="recap-label">Transferts vérifiés dans "Mes croisières"</span><span class="recap-tag"></span></div>
-        <div class="recap-item" id="r5"><div class="recap-dot"></div><span class="recap-label">Contact Filovent enregistré</span><span class="recap-tag"></span></div>
-        <div class="recap-item" id="r6"><div class="recap-dot"></div><span class="recap-label">Visa vérifié</span><span class="recap-tag">selon destination</span></div>
-        <div class="recap-item" id="r7"><div class="recap-dot"></div><span class="recap-label">Régimes alimentaires et besoins signalés</span><span class="recap-tag"></span></div>
-        <div class="recap-item" id="r8"><div class="recap-dot"></div><span class="recap-label">Assurance souscrite</span><span class="recap-tag"></span></div>
+        <div class="recap-item" id="r5"><div class="recap-dot"></div><span class="recap-label">Visa vérifié</span><span class="recap-tag">selon destination</span></div>
+        <div class="recap-item" id="r6"><div class="recap-dot"></div><span class="recap-label">Régimes alimentaires et besoins signalés</span><span class="recap-tag"></span></div>
+        <div class="recap-item" id="r7"><div class="recap-dot"></div><span class="recap-label">Assurance souscrite</span><span class="recap-tag"></span></div>
       </div>
     </div>
 
@@ -605,18 +467,9 @@ body {
     <div class="bas-label">Bon à savoir avant de partir</div>
     <p class="tm" style="margin-bottom:14px;font-style:italic;">Ces éléments ne nécessitent pas d'action immédiate — mais mieux vaut y penser.</p>
     <div class="bas-grid">
-      <div class="bas-card">
-        <div class="bas-card-title">Bagages</div>
-        <div class="bas-card-text">Vêtements adaptés au climat, chaussures confortables, adaptateur électrique si besoin.</div>
-      </div>
-      <div class="bas-card">
-        <div class="bas-card-title">Médicaments</div>
-        <div class="bas-card-text">Quantité suffisante pour tout le séjour, ordonnance recommandée, trousse de premiers soins. Tout besoin médical doit être signalé avant le départ.</div>
-      </div>
-      <div class="bas-card">
-        <div class="bas-card-title">Argent</div>
-        <div class="bas-card-text">Renseignez-vous sur la monnaie locale et prévoyez des espèces pour les dépenses courantes.</div>
-      </div>
+      <div class="bas-card"><div class="bas-card-title">Bagages</div><div class="bas-card-text">Vêtements adaptés au climat, chaussures confortables, adaptateur électrique si besoin.</div></div>
+      <div class="bas-card"><div class="bas-card-title">Médicaments</div><div class="bas-card-text">Quantité suffisante pour tout le séjour, ordonnance recommandée, trousse de premiers soins. Tout besoin médical doit être signalé avant le départ.</div></div>
+      <div class="bas-card"><div class="bas-card-title">Argent</div><div class="bas-card-text">Renseignez-vous sur la monnaie locale et prévoyez des espèces pour les dépenses courantes.</div></div>
     </div>
 
     <div class="help">
@@ -626,192 +479,149 @@ body {
       </div>
       <a href="mailto:concierge@filovent.com" class="help-link">concierge@filovent.com</a>
     </div>
-
   </main>
 </div>
 
 <script>
-// Groupes standards (passeport, visa, infos)
-const GROUPS = {
-  pass:  { skip: false },
-  visa:  { skip: false },
-  infos: { skip: false }
-};
+const G = { pass:{skip:false}, visa:{skip:false}, infos:{skip:false} };
+let volsChoice = null;
 
-// Sous-groupes vols
-const VOLS_SKIP = { skip: false };
-const VOLS_SUBS = ['v1','v2','v3','v4'];
+// Attacher les listeners APRÈS le DOM
+document.getElementById('btn-oui').addEventListener('click', function() { selectVols('oui'); });
+document.getElementById('btn-non').addEventListener('click', function() { selectVols('non'); });
 
 function toggleBloc(id) {
-  const bb = document.getElementById('bb-' + id);
-  const bc = document.getElementById('bc-' + id);
-  const open = bb.classList.contains('open');
-  bb.classList.toggle('open', !open);
-  bc.classList.toggle('open', !open);
+  const bb = document.getElementById('bb-'+id);
+  const bc = document.getElementById('bc-'+id);
+  bb.classList.toggle('open', !bb.classList.contains('open'));
+  bc.classList.toggle('open', !bc.classList.contains('open'));
 }
 
-/* — CHECK ITEMS STANDARD — */
 function toggleCI(el, group) {
-  const skipRow = document.getElementById('skip-' + group);
-  if (skipRow && skipRow.classList.contains('active')) {
-    skipRow.classList.remove('active');
-    document.getElementById('sb-' + group).innerHTML = '';
-    GROUPS[group].skip = false;
+  const sr = document.getElementById('skip-'+group);
+  if (sr.classList.contains('active')) {
+    sr.classList.remove('active');
+    document.getElementById('sb-'+group).innerHTML = '';
+    G[group].skip = false;
   }
   el.classList.toggle('ok');
   updateGroup(group);
 }
 
 function toggleSkip(group) {
-  if (group === 'vols') { toggleVolsSkip(); return; }
-  const skipRow = document.getElementById('skip-' + group);
-  const isActive = skipRow.classList.contains('active');
-  if (isActive) {
-    skipRow.classList.remove('active');
-    document.getElementById('sb-' + group).innerHTML = '';
-    GROUPS[group].skip = false;
+  const sr = document.getElementById('skip-'+group);
+  if (sr.classList.contains('active')) {
+    sr.classList.remove('active');
+    document.getElementById('sb-'+group).innerHTML = '';
+    G[group].skip = false;
   } else {
-    skipRow.classList.add('active');
-    document.getElementById('sb-' + group).innerHTML = '–';
-    GROUPS[group].skip = true;
-    document.querySelectorAll('#cl-' + group + ' .ci').forEach(ci => ci.classList.remove('ok'));
+    sr.classList.add('active');
+    document.getElementById('sb-'+group).innerHTML = '–';
+    G[group].skip = true;
+    document.querySelectorAll('#cl-'+group+' .ci').forEach(c => c.classList.remove('ok'));
   }
   updateGroup(group);
 }
 
 function updateGroup(group) {
-  const items = document.querySelectorAll('#cl-' + group + ' .ci');
-  const checked = document.querySelectorAll('#cl-' + group + ' .ci.ok').length;
-  const total = items.length;
-  const skipped = GROUPS[group].skip;
-
-  document.getElementById('czp-' + group).textContent = skipped ? 'Ignoré' : checked + ' / ' + total;
-
-  const bloc = document.getElementById('b-' + group);
-  const bs = document.getElementById('bs-' + group);
-  bloc.classList.remove('done', 'partial');
-  if (skipped) { bloc.classList.add('done'); bs.textContent = 'Ignoré — je passe à la suite'; }
-  else if (checked === total && total > 0) { bloc.classList.add('done'); bs.textContent = 'Complété'; }
-  else if (checked > 0) { bloc.classList.add('partial'); bs.textContent = checked + ' / ' + total + ' éléments validés'; }
-  else { bs.textContent = 'À compléter'; }
-
-  updateGlobal();
-  updateRecap();
+  const items   = document.querySelectorAll('#cl-'+group+' .ci');
+  const checked = document.querySelectorAll('#cl-'+group+' .ci.ok').length;
+  const total   = items.length;
+  const skipped = G[group].skip;
+  document.getElementById('czp-'+group).textContent = skipped ? 'Ignoré' : checked+' / '+total;
+  const bloc = document.getElementById('b-'+group);
+  const bs   = document.getElementById('bs-'+group);
+  bloc.classList.remove('done','partial');
+  if (skipped)                       { bloc.classList.add('done');    bs.textContent = 'Ignoré — je passe à la suite'; }
+  else if (checked===total&&total>0) { bloc.classList.add('done');    bs.textContent = 'Complété'; }
+  else if (checked>0)                { bloc.classList.add('partial'); bs.textContent = checked+' / '+total+' éléments validés'; }
+  else                               {                                bs.textContent = 'À compléter'; }
+  refresh();
 }
 
-/* — VOLS SOUS-ITEMS — */
-function toggleSubCI(el, group, sub) {
-  if (VOLS_SKIP.skip) {
-    VOLS_SKIP.skip = false;
-    const sr = document.getElementById('skip-vols');
-    sr.classList.remove('active');
-    document.getElementById('sb-vols').innerHTML = '';
-  }
+function selectVols(choice) {
+  volsChoice = choice;
+  // Styles
+  document.getElementById('btn-oui').className = 'vols-btn' + (choice==='oui' ? ' sel-oui' : '');
+  document.getElementById('btn-non').className = 'vols-btn' + (choice==='non' ? ' sel-non' : '');
+  // Cas
+  document.getElementById('cas-oui').classList.toggle('open', choice==='oui');
+  document.getElementById('cas-non').classList.toggle('open', choice==='non');
+  // Reset l'autre cas
+  const toReset = choice==='oui' ? ['va1','va2','va3'] : ['vb1','vb2'];
+  toReset.forEach(s => document.querySelectorAll('#cl-'+s+' .ci').forEach(c => c.classList.remove('ok')));
+  updateVols();
+}
+
+function toggleSubCI(el, sub) {
   el.classList.toggle('ok');
   updateVols();
 }
 
-function toggleVolsSkip() {
-  const sr = document.getElementById('skip-vols');
-  const isActive = sr.classList.contains('active');
-  if (isActive) {
-    sr.classList.remove('active');
-    document.getElementById('sb-vols').innerHTML = '';
-    VOLS_SKIP.skip = false;
-  } else {
-    sr.classList.add('active');
-    document.getElementById('sb-vols').innerHTML = '–';
-    VOLS_SKIP.skip = true;
-    VOLS_SUBS.forEach(s => {
-      document.querySelectorAll('#cl-' + s + ' .ci').forEach(ci => ci.classList.remove('ok'));
-    });
-  }
-  updateVols();
-}
-
 function updateVols() {
-  let checked = 0, total = 0;
-  VOLS_SUBS.forEach(s => {
-    const items = document.querySelectorAll('#cl-' + s + ' .ci');
+  const subs = volsChoice==='oui' ? ['vb1','vb2'] : volsChoice==='non' ? ['va1','va2','va3'] : [];
+  let checked=0, total=0;
+  subs.forEach(s => {
+    total   += document.querySelectorAll('#cl-'+s+' .ci').length;
+    checked += document.querySelectorAll('#cl-'+s+' .ci.ok').length;
+  });
+  const bloc = document.getElementById('b-vols');
+  const bs   = document.getElementById('bs-vols');
+  bloc.classList.remove('done','partial');
+  if (!volsChoice)                   {                                bs.textContent = 'À compléter'; }
+  else if (checked===total&&total>0) { bloc.classList.add('done');    bs.textContent = 'Complété'; }
+  else if (checked>0)                { bloc.classList.add('partial'); bs.textContent = checked+' / '+total+' éléments validés'; }
+  else                               {                                bs.textContent = 'À compléter'; }
+  refresh();
+}
+
+function refresh() {
+  const subs = volsChoice==='oui' ? ['vb1','vb2'] : volsChoice==='non' ? ['va1','va2','va3'] : [];
+  let done=0, total=0;
+  ['pass','visa','infos'].forEach(g => {
+    const items = document.querySelectorAll('#cl-'+g+' .ci');
     total += items.length;
-    checked += document.querySelectorAll('#cl-' + s + ' .ci.ok').length;
+    done  += G[g].skip ? items.length : document.querySelectorAll('#cl-'+g+' .ci.ok').length;
+  });
+  subs.forEach(s => {
+    total += document.querySelectorAll('#cl-'+s+' .ci').length;
+    done  += document.querySelectorAll('#cl-'+s+' .ci.ok').length;
   });
 
-  const bloc = document.getElementById('b-vols');
-  const bs = document.getElementById('bs-vols');
-  bloc.classList.remove('done', 'partial');
-
-  if (VOLS_SKIP.skip) {
-    bloc.classList.add('done'); bs.textContent = 'Ignoré — je passe à la suite';
-  } else if (checked === total && total > 0) {
-    bloc.classList.add('done'); bs.textContent = 'Complété';
-  } else if (checked > 0) {
-    bloc.classList.add('partial'); bs.textContent = checked + ' / ' + total + ' éléments validés';
+  // Barre de progression
+  if (!volsChoice) {
+    const fixTotal = ['pass','visa','infos'].reduce((a,g)=>a+document.querySelectorAll('#cl-'+g+' .ci').length, 0);
+    document.getElementById('gCount').textContent = done+' / '+fixTotal+'+';
+    document.getElementById('gFill').style.width = fixTotal>0 ? Math.round(done/fixTotal*100)+'%' : '0%';
   } else {
-    bs.textContent = 'À compléter';
+    document.getElementById('gCount').textContent = done+' / '+total;
+    document.getElementById('gFill').style.width = total>0 ? Math.round(done/total*100)+'%' : '0%';
   }
 
-  updateGlobal();
-  updateRecap();
-}
-
-/* — GLOBAL — */
-function countAll() {
-  let done = 0, total = 0;
-  ['pass','visa','infos'].forEach(g => {
-    const items = document.querySelectorAll('#cl-' + g + ' .ci');
-    total += items.length;
-    done += GROUPS[g].skip ? items.length : document.querySelectorAll('#cl-' + g + ' .ci.ok').length;
-  });
-  VOLS_SUBS.forEach(s => {
-    const items = document.querySelectorAll('#cl-' + s + ' .ci');
-    total += items.length;
-    done += VOLS_SKIP.skip ? items.length : document.querySelectorAll('#cl-' + s + ' .ci.ok').length;
-  });
-  return { done, total };
-}
-
-function updateGlobal() {
-  const { done, total } = countAll();
-  document.getElementById('gFill').style.width = Math.round(done/total*100) + '%';
-  document.getElementById('gCount').textContent = done + ' / ' + total;
-}
-
-function updateRecap() {
-  const isOk = (group, idx) => {
-    if (group === 'vols') return false;
-    return !GROUPS[group].skip && document.querySelectorAll('#cl-' + group + ' .ci')[idx]?.classList.contains('ok');
-  };
-  const isVolsSubOk = (sub, idx) => {
-    return !VOLS_SKIP.skip && document.querySelectorAll('#cl-' + sub + ' .ci')[idx]?.classList.contains('ok');
-  };
-  const isSkipped = g => g === 'vols' ? VOLS_SKIP.skip : GROUPS[g]?.skip;
-
+  // Recap
+  const ci = (id,idx) => document.querySelectorAll('#cl-'+id+' .ci')[idx]?.classList.contains('ok');
   const map = [
-    { id:'r0', ok: isOk('pass',3),          skip: isSkipped('pass') },
-    { id:'r1', ok: isOk('pass',0),          skip: isSkipped('pass') },
-    { id:'r2', ok: isVolsSubOk('v1',0),     skip: isSkipped('vols') },
-    { id:'r3', ok: isVolsSubOk('v2',0),     skip: isSkipped('vols') },
-    { id:'r4', ok: isVolsSubOk('v3',0),     skip: isSkipped('vols') },
-    { id:'r5', ok: isVolsSubOk('v4',0),     skip: isSkipped('vols') },
-    { id:'r6', ok: isOk('visa',0),          skip: isSkipped('visa') },
-    { id:'r7', ok: isOk('infos',0),         skip: isSkipped('infos') },
-    { id:'r8', ok: isOk('infos',2),         skip: isSkipped('infos') },
+    { id:'r0', ok:ci('pass',3),             skip:G.pass.skip },
+    { id:'r1', ok:ci('pass',0),             skip:G.pass.skip },
+    { id:'r2', ok:ci('va1',0),              skip:volsChoice==='oui' },
+    { id:'r3', ok:ci('va2',0)||ci('vb1',0), skip:false },
+    { id:'r4', ok:ci('va3',0)||ci('vb2',0), skip:false },
+    { id:'r5', ok:ci('visa',0),             skip:G.visa.skip },
+    { id:'r6', ok:ci('infos',0),            skip:G.infos.skip },
+    { id:'r7', ok:ci('infos',2),            skip:G.infos.skip },
   ];
-
-  let done = 0;
+  let rdone=0;
   map.forEach(m => {
     const ri = document.getElementById(m.id);
     ri.classList.remove('ok','skip');
-    if (m.skip) { ri.classList.add('skip'); done++; }
-    else if (m.ok) { ri.classList.add('ok'); done++; }
+    if (m.skip)    { ri.classList.add('skip'); rdone++; }
+    else if (m.ok) { ri.classList.add('ok');   rdone++; }
   });
-  document.getElementById('rFill').style.width = Math.round(done/map.length*100) + '%';
-  document.getElementById('rCount').textContent = done + ' / ' + map.length;
+  document.getElementById('rFill').style.width = Math.round(rdone/map.length*100)+'%';
+  document.getElementById('rCount').textContent = rdone+' / '+map.length;
 }
 
-updateGlobal();
-updateRecap();
+refresh();
 </script>
 </body>
 </html>
