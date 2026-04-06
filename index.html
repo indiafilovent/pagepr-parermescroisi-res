@@ -80,32 +80,45 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .lire {
   background:var(--gray-bg);
   border:1px solid var(--gray-1);
-  border-left:3px solid var(--gray-7);
   border-radius:3px;
   padding:12px 16px;
-  margin-bottom:12px;
+  margin-bottom:14px;
   font-size:13.5px;
   color:var(--gray-8);
   line-height:1.65;
+  position:relative;
+}
+.lire::before {
+  content:'À lire';
+  display:block;
+  font-size:9.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--gray-9);
+  margin-bottom:5px;
 }
 .lire strong { color:var(--navy); }
+
 .faire {
+  background:#FFF5F5;
+  border:1px solid #F5C6C6;
+  border-left:3px solid var(--cta);
+  border-radius:3px;
+  padding:13px 16px;
+  margin-bottom:14px;
   display:flex;
-  align-items:flex-start;
-  gap:10px;
-  margin-bottom:6px;
+  flex-direction:column;
+  gap:6px;
 }
 .faire-label {
-  font-size:10.5px;
+  font-size:9.5px;
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:1px;
   color:var(--cta);
-  white-space:nowrap;
-  margin-top:2px;
-  flex-shrink:0;
 }
-.faire-content { flex:1; font-size:14px; color:var(--navy); line-height:1.6; }
+.faire-content { font-size:14px; color:var(--navy); line-height:1.6; }
 
 /* SUBSECTION */
 .ss { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.1px; color:var(--gray-8); margin:18px 0 7px; }
@@ -367,7 +380,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
           <!-- CAS A : Tous les vols Filovent -->
           <div class="cas-wrap" id="cas-a">
             <div class="lire">Vos billets sont entièrement entre nos mains — vous n'avez rien à nous transmettre concernant vos vols.</div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, directement sur le site de votre compagnie aérienne.</span>
             </div>
@@ -377,7 +390,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
               </ul>
             </div>
             <div class="sep"></div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
             </div>
@@ -392,7 +405,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
           <!-- CAS B : Vols internationaux Filovent + intérieurs perso -->
           <div class="cas-wrap" id="cas-b">
             <div class="lire">Vos vols internationaux sont pris en charge. En revanche, vos vols intérieurs sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Transmettez-nous les informations de vos vols intérieurs : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml" style="margin:0 0 0 4px;">concierge@filovent.com</a></span>
             </div>
@@ -402,7 +415,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
               </ul>
             </div>
             <div class="sep"></div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, directement sur le site de votre compagnie aérienne. Cette étape n'est pas nécessaire pour les vols charter.</span>
             </div>
@@ -412,7 +425,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
               </ul>
             </div>
             <div class="sep"></div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
             </div>
@@ -427,7 +440,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
           <!-- CAS C : Tous les vols perso -->
           <div class="cas-wrap" id="cas-c">
             <div class="lire">Tous vos vols sont à votre charge — merci de nous transmettre l'ensemble de vos informations de vol pour que nous puissions organiser vos transferts dans les meilleures conditions.</div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Transmettez-nous vos informations de vol : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml" style="margin:0 0 0 4px;">concierge@filovent.com</a></span>
             </div>
@@ -437,7 +450,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
               </ul>
             </div>
             <div class="sep"></div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, directement sur le site de votre compagnie aérienne. Cette étape n'est pas nécessaire pour les vols charter.</span>
             </div>
@@ -447,7 +460,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
               </ul>
             </div>
             <div class="sep"></div>
-            <div class="faire" style="margin-bottom:12px;">
+            <div class="faire">
               <span class="faire-label">À faire</span>
               <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
             </div>
@@ -515,7 +528,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 
           <div class="lire">Pour prendre en compte vos besoins personnels, merci de nous signaler vos allergies alimentaires ou régimes spécifiques <strong>au moins 2 semaines avant le départ</strong>, ainsi que tout besoin spécifique (mobilité réduite, besoins médicaux). Sans ces informations, certaines prestations peuvent être difficiles à mettre en place.</div>
 
-          <div class="faire" style="margin:12px 0 4px;">
+          <div class="faire">
             <span class="faire-label">À faire</span>
             <span class="faire-content">Signalez-nous ces informations à : <a href="mailto:concierge@filovent.com" class="eml" style="margin:0 0 0 4px;">concierge@filovent.com</a></span>
           </div>
