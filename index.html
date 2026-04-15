@@ -9,16 +9,23 @@
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 :root {
   --navy:#081C37; --cta:#AF141C; --blue-1:#015AA5;
-  --gray-bg:#F4F2EC; --gray-0:#F5F2ED; --gray-1:#DDDAD3;
-  --gray-2:#E8E6DF; --gray-6:#E0E4E4; --gray-7:#CCCCCC;
-  --gray-8:#666666; --gray-9:#B1B5AF; --white:#FFFFFF;
-  --green:#2A7A2E; --warn-bg:#FEF9ED; --warn-bd:#E8C84A; --warn-tx:#6B4E00;
+  --gray-bg:#F0F3F7; /* bleu-gris très doux — plus Filovent que le beige */
+  --gray-0:#F6F8FB;
+  --gray-1:#DDE3EC;
+  --gray-2:#C8D2E0;
+  --gray-6:#D4DCE8;
+  --gray-7:#BBBFC7;
+  --gray-8:#666F7E;
+  --gray-9:#9BA4B2;
+  --white:#FFFFFF;
+  --green:#2A7A2E;
+  --warn-bg:#FEF9ED; --warn-bd:#E8C84A; --warn-tx:#6B4E00;
   --font:'Montserrat',Arial,sans-serif; --serif:'Lora',Georgia,serif;
 }
 body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased; }
 
 /* HEADER */
-.hdr { background:var(--white); border-bottom:1px solid var(--gray-6); height:60px; padding:0 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.hdr { background:var(--white); border-bottom:1px solid var(--gray-6); height:60px; padding:0 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; box-shadow:0 1px 3px rgba(8,28,55,.07); }
 .hdr-logo { font-weight:700; font-size:22px; color:var(--navy); text-decoration:none; letter-spacing:-.5px; }
 .hdr-mid { display:flex; align-items:center; gap:12px; font-size:12.5px; }
 .hdr-avatar { width:34px; height:34px; border-radius:50%; background:var(--gray-1); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--gray-8); }
@@ -43,19 +50,19 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 /* PAGE HEADER */
 .ph { margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--gray-1); }
 .ph-title { font-size:26px; font-weight:700; color:var(--navy); margin-bottom:10px; }
-.ph-hook { font-size:15px; color:var(--navy); line-height:1.7; font-weight:500; margin-bottom:8px; }
+.ph-hook { font-size:15px; color:var(--navy); line-height:1.7; font-weight:500; margin-bottom:6px; }
 .ph-note { font-family:var(--serif); font-style:italic; font-size:13.5px; color:var(--gray-8); }
 
 /* PROGRESS */
-.gp { display:flex; align-items:center; gap:14px; margin-bottom:30px; background:var(--white); border:1px solid var(--gray-6); border-radius:4px; padding:12px 18px; }
-.gp-label { font-size:12px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.8px; white-space:nowrap; }
-.gp-bar { flex:1; height:5px; background:var(--gray-1); border-radius:99px; overflow:hidden; }
+.gp { display:flex; align-items:center; gap:14px; margin-bottom:28px; background:var(--white); border:1px solid var(--gray-6); border-radius:4px; padding:12px 18px; }
+.gp-label { font-size:11px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.9px; white-space:nowrap; }
+.gp-bar { flex:1; height:4px; background:var(--gray-1); border-radius:99px; overflow:hidden; }
 .gp-fill { height:100%; background:var(--cta); border-radius:99px; transition:width .35s ease; width:0%; }
-.gp-count { font-size:12.5px; font-weight:700; color:var(--cta); min-width:52px; text-align:right; }
+.gp-count { font-size:12px; font-weight:700; color:var(--cta); min-width:52px; text-align:right; }
 
 /* BLOCS */
-.bloc { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; margin-bottom:12px; overflow:hidden; transition:box-shadow .15s; }
-.bloc:hover { box-shadow:0 2px 8px rgba(8,28,55,.06); }
+.bloc { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; margin-bottom:10px; overflow:hidden; transition:box-shadow .15s; }
+.bloc:hover { box-shadow:0 2px 10px rgba(8,28,55,.07); }
 .bloc-hdr { display:flex; align-items:center; cursor:pointer; user-select:none; }
 .bloc-accent { width:4px; align-self:stretch; background:var(--gray-1); flex-shrink:0; transition:background .2s; }
 .bloc.done .bloc-accent { background:var(--green); }
@@ -74,68 +81,74 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .bloc-chevron.open { transform:rotate(180deg); }
 .bloc-body { display:none; }
 .bloc-body.open { display:block; }
-.bloc-content { padding:22px 24px 22px 28px; border-top:1px solid var(--gray-1); }
+.bloc-content { padding:22px 24px 24px 28px; border-top:1px solid var(--gray-1); }
 
-/* ── À LIRE ── */
+/* ── TEXTE COURANT ── */
+.t { font-size:14px; color:var(--navy); line-height:1.7; margin-bottom:10px; }
+.t-muted { font-size:13.5px; color:var(--gray-8); line-height:1.65; margin-bottom:10px; }
+.sep { height:1px; background:var(--gray-1); margin:18px 0; }
+
+/* ── À LIRE — texte simple, léger ── */
 .lire {
-  background:var(--gray-bg);
-  border:1px solid var(--gray-1);
-  border-radius:3px;
-  padding:12px 16px;
-  margin-bottom:14px;
   font-size:13.5px;
   color:var(--gray-8);
-  line-height:1.65;
-}
-.lire::before {
-  content:'À lire';
-  display:block;
-  font-size:9.5px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  color:var(--gray-9);
-  margin-bottom:5px;
+  line-height:1.7;
+  margin-bottom:14px;
+  padding-left:12px;
+  border-left:2px solid var(--gray-2);
 }
 .lire strong { color:var(--navy); }
 
-/* ── À FAIRE ── */
+/* ── À FAIRE — encadré rouge discret ── */
 .faire {
   background:#FFF5F5;
-  border:1px solid #F5C6C6;
+  border:1px solid #F0C8C8;
   border-left:3px solid var(--cta);
   border-radius:3px;
-  padding:13px 16px;
+  padding:12px 16px;
   margin-bottom:14px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
 }
 .faire-label {
   font-size:9.5px;
   font-weight:700;
   text-transform:uppercase;
-  letter-spacing:1px;
+  letter-spacing:1.1px;
   color:var(--cta);
+  margin-bottom:5px;
 }
 .faire-content { font-size:14px; color:var(--navy); line-height:1.6; }
 
-/* MISC */
-.sep { height:1px; background:var(--gray-1); margin:16px 0; }
-.eml { display:inline-flex; align-items:center; gap:4px; color:var(--blue-1); font-size:13.5px; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(1,90,165,.3); padding-bottom:1px; transition:border-color .15s; }
+/* ── ALERTE RETARD — bandeau horizontal ── */
+.alerte-retard {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#EEF3FA;
+  border:1px solid var(--gray-1);
+  border-radius:3px;
+  padding:10px 14px;
+  margin-top:16px;
+  font-size:13.5px;
+  color:var(--navy);
+  line-height:1.5;
+}
+.alerte-retard-icon {
+  font-size:14px;
+  flex-shrink:0;
+}
+
+/* ── EMAIL ── */
+.eml { color:var(--blue-1); font-size:13.5px; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(1,90,165,.3); padding-bottom:1px; transition:border-color .15s; }
 .eml:hover { border-color:var(--blue-1); }
-.bl { list-style:none; margin:6px 0 10px; display:flex; flex-direction:column; gap:5px; }
-.bl li { display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--navy); line-height:1.55; }
-.bl li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--cta); flex-shrink:0; margin-top:8px; }
 
 /* CHECK ZONE */
 .cz { margin-top:16px; border:1px solid var(--gray-1); border-radius:3px; overflow:hidden; }
-.cz-hdr { background:var(--gray-bg); padding:9px 14px; display:flex; align-items:center; justify-content:space-between; }
+.cz-hdr { background:var(--gray-0); padding:9px 14px; display:flex; align-items:center; justify-content:space-between; }
 .cz-hdr-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--gray-8); }
 .cz-hdr-prog { font-size:11px; font-weight:700; color:var(--gray-8); }
 .skip-row { display:flex; align-items:center; gap:10px; padding:9px 14px; background:var(--gray-0); border-bottom:1px solid var(--gray-1); cursor:pointer; transition:background .1s; font-size:13px; color:var(--gray-8); font-style:italic; }
-.skip-row:hover { background:var(--gray-2); }
-.skip-row.active { background:var(--gray-2); }
+.skip-row:hover { background:var(--gray-1); }
+.skip-row.active { background:#E8EDF3; }
 .skip-box { width:19px; height:19px; border:1.5px solid var(--gray-7); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--white); transition:all .15s; }
 .skip-row.active .skip-box { background:var(--gray-7); border-color:var(--gray-7); }
 .skip-row.active .skip-box::after { content:'–'; color:white; font-size:13px; font-weight:700; line-height:1; }
@@ -149,6 +162,23 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .ci.ok .ci-label { text-decoration:line-through; color:var(--gray-9); }
 .ci-label { flex:1; }
 .sub-bloc { border:1px solid var(--gray-1); border-radius:3px; overflow:hidden; margin-top:8px; margin-bottom:4px; }
+
+/* BADGE OBLIGATOIRE */
+.ci-badge {
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  color:var(--cta);
+  background:#FFF0F0;
+  border:1px solid #F5C6C6;
+  border-radius:20px;
+  padding:2px 8px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.ci.required { background:var(--white); }
+.ci.required:hover { background:var(--gray-0); }
 
 /* RADIO VOLS — 4 options */
 .vols-choix { display:flex; flex-direction:column; gap:8px; margin-bottom:4px; }
@@ -169,7 +199,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .vols-btn.sel-a { border-color:var(--navy);  background:#EEF1F6; }
 .vols-btn.sel-b { border-color:#1793D7;       background:#EAF4FB; }
 .vols-btn.sel-c { border-color:#6B4EA5;       background:#F2EEF9; }
-.vols-btn.sel-d { border-color:var(--cta);   background:#FBF0F0; }
+.vols-btn.sel-d { border-color:var(--cta);    background:#FBF0F0; }
 .vols-btn.hidden { max-height:0; opacity:0; padding-top:0; padding-bottom:0; border-width:0; margin-bottom:0; pointer-events:none; }
 .vols-dot { width:20px; height:20px; border-radius:50%; border:2px solid var(--gray-7); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:border-color .15s; background:var(--white); pointer-events:none; }
 .vols-btn.sel-a .vols-dot { border-color:var(--navy); }
@@ -182,12 +212,25 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .vols-btn.sel-d .vols-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:var(--cta); display:block; }
 .vols-btn-main { font-size:13.5px; font-weight:600; color:var(--navy); }
 .vols-btn-sub { font-size:12px; color:var(--gray-8); margin-top:2px; }
-.vols-change { display:none; font-size:12px; color:var(--blue-1); cursor:pointer; text-decoration:underline; margin-bottom:16px; margin-top:4px; }
+.vols-change { display:none; font-size:12px; color:var(--blue-1); cursor:pointer; text-decoration:underline; margin-bottom:16px; margin-top:6px; }
 .vols-change.visible { display:inline-block; }
-
-/* CAS DÉROULANT */
 .cas-wrap { overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .3s ease; }
 .cas-wrap.open { max-height:2000px; opacity:1; }
+
+/* INFOS IMPORTANTES — structure scindée */
+.info-bloc {
+  padding:14px 0;
+  border-bottom:1px solid var(--gray-1);
+}
+.info-bloc:last-child { border-bottom:none; padding-bottom:0; }
+.info-bloc-title {
+  font-size:11.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  color:var(--navy);
+  margin-bottom:7px;
+}
 
 /* RECAP */
 .recap { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; margin:28px 0 14px; overflow:hidden; }
@@ -207,8 +250,44 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .recap-label { flex:1; }
 .recap-tag { font-size:11px; color:var(--gray-8); font-style:italic; }
 
+/* CI OBLIGATOIRE */
+.ci.required { background:var(--gray-0); }
+.ci.required .ci-box { border-color:var(--cta); border-width:2px; }
+.ci.required .ci-label { font-weight:600; }
+.ci.required .ci-badge {
+  font-size:9.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  color:var(--cta);
+  background:#FFF0F0;
+  border:1px solid #F5C6C6;
+  border-radius:20px;
+  padding:2px 8px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.ci.required.ok .ci-badge { display:none; }
+.ci.required.ok { background:var(--white); }
+
+/* SÉPARATEUR INFOS IMPORTANTES */
+.info-sep {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:6px 0;
+  color:var(--gray-7);
+  font-size:11px;
+}
+.info-sep::before, .info-sep::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--gray-1);
+}
+
 /* BON À SAVOIR */
-.bas-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.1px; color:var(--gray-9); margin:30px 0 12px; }
+.bas-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.1px; color:var(--gray-9); margin:30px 0 10px; }
 .bas-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
 .bas-card { background:var(--white); border:1px solid var(--gray-6); border-radius:2px; padding:16px 18px; }
 .bas-card-title { font-size:12px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
@@ -302,11 +381,14 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
       </div>
       <div class="bloc-body open" id="bb-pass">
         <div class="bloc-content">
-          <div class="lire">Selon votre destination, le passeport peut être obligatoire. C'est dans tous les cas le document que nous utilisons pour organiser votre accueil, vos transferts et votre embarquement.</div>
+
+          <p class="lire">Selon votre destination, le passeport peut être obligatoire. C'est dans tous les cas le document que nous utilisons pour organiser votre accueil, vos transferts et votre embarquement.</p>
+
           <div class="faire">
-            <span class="faire-label">À faire</span>
-            <span class="faire-content">Envoyez la copie du passeport (page avec photographie) à notre équipe conciergerie : <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></span>
+            <div class="faire-label">À faire</div>
+            <div class="faire-content">Envoyez la copie du passeport (page avec photographie) à notre équipe conciergerie : <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
           </div>
+
           <div class="cz">
             <div class="cz-hdr">
               <span class="cz-hdr-title">Ma check-list passeport</span>
@@ -342,162 +424,94 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
       </div>
       <div class="bloc-body open" id="bb-vols">
         <div class="bloc-content">
-          <p style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:14px;">Quelle est votre situation concernant les vols ?</p>
+          <p class="t" style="font-weight:600;margin-bottom:14px;">Quelle est votre situation concernant les vols ?</p>
 
           <div class="vols-choix">
-            <div class="vols-btn" id="btn-a">
-              <div class="vols-dot"></div>
-              <div>
-                <div class="vols-btn-main">Filovent a réservé tous mes vols</div>
-                <div class="vols-btn-sub">Vols internationaux et intérieurs inclus</div>
-              </div>
-            </div>
-            <div class="vols-btn" id="btn-b">
-              <div class="vols-dot"></div>
-              <div>
-                <div class="vols-btn-main">Filovent a réservé uniquement mes vols internationaux</div>
-                <div class="vols-btn-sub">J'ai réservé mes vols intérieurs moi-même</div>
-              </div>
-            </div>
-            <div class="vols-btn" id="btn-c">
-              <div class="vols-dot"></div>
-              <div>
-                <div class="vols-btn-main">Filovent a réservé uniquement mes vols intérieurs</div>
-                <div class="vols-btn-sub">J'ai réservé mes vols internationaux moi-même</div>
-              </div>
-            </div>
-            <div class="vols-btn" id="btn-d">
-              <div class="vols-dot"></div>
-              <div>
-                <div class="vols-btn-main">J'ai réservé tous mes vols moi-même</div>
-                <div class="vols-btn-sub">Toutes les informations de vol sont à nous transmettre</div>
-              </div>
-            </div>
+            <div class="vols-btn" id="btn-a"><div class="vols-dot"></div><div><div class="vols-btn-main">Filovent a réservé tous mes vols</div><div class="vols-btn-sub">Vols internationaux et intérieurs inclus</div></div></div>
+            <div class="vols-btn" id="btn-b"><div class="vols-dot"></div><div><div class="vols-btn-main">Filovent a réservé uniquement mes vols internationaux</div><div class="vols-btn-sub">J'ai réservé mes vols intérieurs moi-même</div></div></div>
+            <div class="vols-btn" id="btn-c"><div class="vols-dot"></div><div><div class="vols-btn-main">Filovent a réservé uniquement mes vols intérieurs</div><div class="vols-btn-sub">J'ai réservé mes vols internationaux moi-même</div></div></div>
+            <div class="vols-btn" id="btn-d"><div class="vols-dot"></div><div><div class="vols-btn-main">J'ai réservé tous mes vols moi-même</div><div class="vols-btn-sub">Toutes les informations de vol sont à nous transmettre</div></div></div>
           </div>
 
           <span class="vols-change" id="vols-change" onclick="resetVols()">Modifier mon choix</span>
 
-          <!-- CAS A : Filovent a réservé TOUS les vols -->
+          <!-- CAS A -->
           <div class="cas-wrap" id="cas-a">
-            <div class="lire">Vos billets sont entièrement entre nos mains — vous n'avez rien à nous transmettre concernant vos vols.</div>
+            <p class="lire">Vos billets sont entièrement entre nos mains — vous n'avez rien à nous transmettre concernant vos vols.</p>
             <div class="faire">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, directement sur le site de votre compagnie aérienne.</span>
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, directement sur le site de votre compagnie aérienne.</div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-a1">
-                <li class="ci" onclick="toggleSubCI(this,'a1')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
-              </ul>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-a1"><li class="ci required" onclick="toggleSubCI(this,'a1')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span><span class="ci-badge">Obligatoire</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</div>
             </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
-            </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-a2">
-                <li class="ci" onclick="toggleSubCI(this,'a2')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
-              </ul>
-            </div>
-            <div class="lire" style="margin-top:14px;">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-a2"><li class="ci" onclick="toggleSubCI(this,'a2')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" &rsaquo; "Itinéraire"</span></li></ul></div>
+            <div class="alerte-retard"><span class="alerte-retard-icon">&#9432;</span><span>En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</span></div>
           </div>
 
-          <!-- CAS B : Filovent vols internationaux + intérieurs perso -->
+          <!-- CAS B -->
           <div class="cas-wrap" id="cas-b">
-            <div class="lire">Vos vols internationaux sont pris en charge. En revanche, vos vols intérieurs sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</div>
+            <p class="lire">Vos vols internationaux sont pris en charge. En revanche, vos vols intérieurs sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</p>
             <div class="faire">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Transmettez-nous les informations de vos vols intérieurs : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></span>
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Transmettez-nous les informations de vos vols intérieurs : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-b1">
-                <li class="ci" onclick="toggleSubCI(this,'b1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis les informations de mes vols intérieurs à concierge@filovent.com</span></li>
-              </ul>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-b1"><li class="ci" onclick="toggleSubCI(this,'b1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis les informations de mes vols intérieurs à concierge@filovent.com</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</div>
             </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, sur le site de votre compagnie aérienne. Cette étape n'est pas nécessaire pour les vols charter.</span>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-b2"><li class="ci required" onclick="toggleSubCI(this,'b2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span><span class="ci-badge">Obligatoire</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-b2">
-                <li class="ci" onclick="toggleSubCI(this,'b2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
-              </ul>
-            </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
-            </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-b3">
-                <li class="ci" onclick="toggleSubCI(this,'b3')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
-              </ul>
-            </div>
-            <div class="lire" style="margin-top:14px;">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-b3"><li class="ci" onclick="toggleSubCI(this,'b3')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" &rsaquo; "Itinéraire"</span></li></ul></div>
+            <div class="alerte-retard"><span class="alerte-retard-icon">&#9432;</span><span>En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</span></div>
           </div>
 
-          <!-- CAS C : Filovent vols intérieurs + internationaux perso -->
+          <!-- CAS C -->
           <div class="cas-wrap" id="cas-c">
-            <div class="lire">Vos vols intérieurs sont pris en charge. En revanche, vos vols internationaux sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</div>
+            <p class="lire">Vos vols intérieurs sont pris en charge. En revanche, vos vols internationaux sont à votre charge — merci de nous transmettre leurs informations pour coordonner l'ensemble de votre itinéraire.</p>
             <div class="faire">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Transmettez-nous les informations de vos vols internationaux : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></span>
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Transmettez-nous les informations de vos vols internationaux : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-c1">
-                <li class="ci" onclick="toggleSubCI(this,'c1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis les informations de mes vols internationaux à concierge@filovent.com</span></li>
-              </ul>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-c1"><li class="ci" onclick="toggleSubCI(this,'c1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis les informations de mes vols internationaux à concierge@filovent.com</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</div>
             </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, sur le site de votre compagnie aérienne. Cette étape n'est pas nécessaire pour les vols charter.</span>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-c2"><li class="ci required" onclick="toggleSubCI(this,'c2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span><span class="ci-badge">Obligatoire</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-c2">
-                <li class="ci" onclick="toggleSubCI(this,'c2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
-              </ul>
-            </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
-            </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-c3">
-                <li class="ci" onclick="toggleSubCI(this,'c3')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
-              </ul>
-            </div>
-            <div class="lire" style="margin-top:14px;">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-c3"><li class="ci" onclick="toggleSubCI(this,'c3')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" &rsaquo; "Itinéraire"</span></li></ul></div>
+            <div class="alerte-retard"><span class="alerte-retard-icon">&#9432;</span><span>En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</span></div>
           </div>
 
-          <!-- CAS D : Tous les vols perso -->
+          <!-- CAS D -->
           <div class="cas-wrap" id="cas-d">
-            <div class="lire">Tous vos vols sont à votre charge — merci de nous transmettre l'ensemble de vos informations de vol pour que nous puissions organiser vos transferts dans les meilleures conditions.</div>
+            <p class="lire">Tous vos vols sont à votre charge — merci de nous transmettre l'ensemble de vos informations de vol pour que nous puissions organiser vos transferts dans les meilleures conditions.</p>
             <div class="faire">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Transmettez-nous vos informations de vol : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></span>
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Transmettez-nous vos informations de vol : numéro de vol, aéroports de départ et d'arrivée, horaires aller et retour. <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-d1">
-                <li class="ci" onclick="toggleSubCI(this,'d1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis mes informations de vol à concierge@filovent.com</span></li>
-              </ul>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-d1"><li class="ci" onclick="toggleSubCI(this,'d1')"><div class="ci-box"></div><span class="ci-label">J'ai transmis mes informations de vol à concierge@filovent.com</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Effectuez votre enregistrement en ligne la veille du départ. Cette étape n'est pas nécessaire pour les vols charter.</div>
             </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Effectuez votre enregistrement en ligne la veille du départ, sur le site de votre compagnie aérienne. Cette étape n'est pas nécessaire pour les vols charter.</span>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-d2"><li class="ci required" onclick="toggleSubCI(this,'d2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span><span class="ci-badge">Obligatoire</span></li></ul></div>
+            <div class="faire" style="margin-top:12px;">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</div>
             </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-d2">
-                <li class="ci" onclick="toggleSubCI(this,'d2')"><div class="ci-box"></div><span class="ci-label">J'effectuerai moi-même mon enregistrement en ligne la veille du départ</span></li>
-              </ul>
-            </div>
-            <div class="faire" style="margin-top:14px;">
-              <span class="faire-label">À faire</span>
-              <span class="faire-content">Vérifiez vos transferts dans votre espace client, rubrique <strong>"Mes croisières"</strong>. Les horaires sont confirmés avant le départ par nos partenaires locaux via WhatsApp.</span>
-            </div>
-            <div class="sub-bloc">
-              <ul class="ci-list" id="cl-d3">
-                <li class="ci" onclick="toggleSubCI(this,'d3')"><div class="ci-box"></div><span class="ci-label">J'ai vérifié mes transferts dans "Mes croisières"</span></li>
-              </ul>
-            </div>
-            <div class="lire" style="margin-top:14px;">En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</div>
+            <div class="sub-bloc"><ul class="ci-list" id="cl-d3"><li class="ci" onclick="toggleSubCI(this,'d3')"><div class="ci-box"></div><span class="ci-label">Si des transferts sont inclus dans mon séjour, j'ai vérifié les détails dans "Mes croisières" &rsaquo; "Itinéraire"</span></li></ul></div>
+            <div class="alerte-retard"><span class="alerte-retard-icon">&#9432;</span><span>En cas de retard ou modification de vol, contactez-nous immédiatement. Nous adapterons l'organisation.</span></div>
           </div>
 
         </div>
@@ -519,7 +533,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
       </div>
       <div class="bloc-body open" id="bb-visa">
         <div class="bloc-content">
-          <div class="lire">L'obligation de visa dépend de votre nationalité et de votre destination. Les démarches sont à votre charge — vérifiez-les auprès des autorités officielles dès votre réservation confirmée. <strong>Certaines démarches prennent plusieurs semaines — anticipez.</strong></div>
+          <p class="lire">L'obligation de visa dépend de votre nationalité et de votre destination. Les démarches sont à votre charge — vérifiez-les auprès des autorités officielles dès votre réservation confirmée. <strong>Certaines démarches prennent plusieurs semaines — anticipez.</strong></p>
           <div class="cz">
             <div class="cz-hdr">
               <span class="cz-hdr-title">Ma check-list visa</span>
@@ -538,7 +552,7 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
       </div>
     </div>
 
-    <!-- ══ BLOC 4 — INFOS ══ -->
+    <!-- ══ BLOC 4 — INFOS IMPORTANTES ══ -->
     <div class="bloc" id="b-infos">
       <div class="bloc-hdr" onclick="toggleBloc('infos')">
         <div class="bloc-accent"></div>
@@ -553,27 +567,51 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
       </div>
       <div class="bloc-body open" id="bb-infos">
         <div class="bloc-content">
-          <div class="lire">Pour prendre en compte vos besoins personnels, merci de nous signaler vos allergies alimentaires ou régimes spécifiques <strong>au moins 2 semaines avant le départ</strong>, ainsi que tout besoin spécifique (mobilité réduite, besoins médicaux). Sans ces informations, certaines prestations peuvent être difficiles à mettre en place.</div>
-          <div class="faire">
-            <span class="faire-label">À faire</span>
-            <span class="faire-content">Signalez-nous ces informations à : <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></span>
-          </div>
-          <div class="lire">Concernant l'assurance voyage, nous la recommandons vivement. Vous pouvez la souscrire via Filovent ou auprès de l'assureur de votre choix. <em>Lien assurance à ajouter</em></div>
-          <div class="cz">
-            <div class="cz-hdr">
-              <span class="cz-hdr-title">Ma check-list informations importantes</span>
-              <span class="cz-hdr-prog" id="czp-infos">0 / 3</span>
+
+          <!-- Sous-section : Régimes & besoins -->
+          <div class="info-bloc">
+            <div class="info-bloc-title">Régimes alimentaires et besoins spécifiques</div>
+            <p class="t-muted">Pour prendre en compte vos besoins personnels, merci de nous signaler vos allergies ou régimes spécifiques <strong style="color:var(--navy);">au moins 2 semaines avant le départ</strong>, ainsi que tout besoin particulier (mobilité réduite, besoins médicaux). Sans ces informations, certaines prestations peuvent être difficiles à mettre en place.</p>
+            <div class="faire">
+              <div class="faire-label">À faire</div>
+              <div class="faire-content">Signalez-nous ces informations à : <a href="mailto:concierge@filovent.com" class="eml">concierge@filovent.com</a></div>
             </div>
-            <div class="skip-row" id="skip-infos" onclick="toggleSkip('infos')">
-              <div class="skip-box" id="sb-infos"></div>
-              <span>Aucun régime ni besoin particulier &mdash; je passe à la suite</span>
+            <div class="cz">
+              <div class="cz-hdr">
+                <span class="cz-hdr-title">Ce que je confirme</span>
+                <span class="cz-hdr-prog" id="czp-reg">0 / 2</span>
+              </div>
+              <div class="skip-row" id="skip-reg" onclick="toggleSkip('reg')">
+                <div class="skip-box" id="sb-reg"></div>
+                <span>Je n'ai aucune allergie ni besoin particulier &mdash; je passe à la suite</span>
+              </div>
+              <ul class="ci-list" id="cl-reg">
+                <li class="ci" onclick="toggleCI(this,'reg')"><div class="ci-box"></div><span class="ci-label">J'ai signalé mes allergies ou régimes alimentaires à concierge@filovent.com</span></li>
+                <li class="ci" onclick="toggleCI(this,'reg')"><div class="ci-box"></div><span class="ci-label">J'ai signalé mes besoins spécifiques à concierge@filovent.com</span></li>
+              </ul>
             </div>
-            <ul class="ci-list" id="cl-infos">
-              <li class="ci" onclick="toggleCI(this,'infos')"><div class="ci-box"></div><span class="ci-label">J'ai signalé mes allergies ou régimes alimentaires à concierge@filovent.com</span></li>
-              <li class="ci" onclick="toggleCI(this,'infos')"><div class="ci-box"></div><span class="ci-label">J'ai signalé mes besoins spécifiques à concierge@filovent.com</span></li>
-              <li class="ci" onclick="toggleCI(this,'infos')"><div class="ci-box"></div><span class="ci-label">Mon assurance voyage est souscrite</span></li>
-            </ul>
           </div>
+
+          <div class="info-sep">Assurance voyage</div>
+
+          <!-- Sous-section : Assurance -->
+          <div class="info-bloc" style="border-bottom:none;padding-top:0;">
+            <p class="t-muted" style="margin-bottom:12px;">Nous recommandons vivement de souscrire une assurance voyage avant votre départ. Elle vous protège en cas d'annulation, de rapatriement ou d'incidents sur place. Vous pouvez la souscrire via Filovent ou auprès de l'assureur de votre choix. <em>Lien assurance à ajouter</em></p>
+            <div class="cz">
+              <div class="cz-hdr">
+                <span class="cz-hdr-title">Ce que je confirme</span>
+                <span class="cz-hdr-prog" id="czp-ass">0 / 1</span>
+              </div>
+              <div class="skip-row" id="skip-ass" onclick="toggleSkip('ass')">
+                <div class="skip-box" id="sb-ass"></div>
+                <span>Je ne souhaite pas souscrire d'assurance &mdash; je passe à la suite</span>
+              </div>
+              <ul class="ci-list" id="cl-ass">
+                <li class="ci" onclick="toggleCI(this,'ass')"><div class="ci-box"></div><span class="ci-label">Mon assurance voyage est souscrite</span></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -617,7 +655,8 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 </div>
 
 <script>
-const G = { pass:{skip:false}, visa:{skip:false}, infos:{skip:false} };
+// Groupes standards — on ajoute 'reg' et 'ass' séparément
+const G = { pass:{skip:false}, visa:{skip:false}, reg:{skip:false}, ass:{skip:false} };
 let volsChoice = null;
 const SUBS = { a:['a1','a2'], b:['b1','b2','b3'], c:['c1','c2','c3'], d:['d1','d2','d3'] };
 
@@ -634,7 +673,7 @@ function toggleBloc(id) {
 
 function toggleCI(el, group) {
   const sr = document.getElementById('skip-'+group);
-  if (sr.classList.contains('active')) {
+  if (sr && sr.classList.contains('active')) {
     sr.classList.remove('active');
     document.getElementById('sb-'+group).innerHTML = '';
     G[group].skip = false;
@@ -663,30 +702,51 @@ function updateGroup(group) {
   const checked = document.querySelectorAll('#cl-'+group+' .ci.ok').length;
   const total   = items.length;
   const skipped = G[group].skip;
-  document.getElementById('czp-'+group).textContent = skipped ? 'Ignoré' : checked+' / '+total;
-  const bloc = document.getElementById('b-'+group);
-  const bs   = document.getElementById('bs-'+group);
-  bloc.classList.remove('done','partial');
-  if (skipped)                       { bloc.classList.add('done');    bs.textContent='Ignoré — je passe à la suite'; }
-  else if (checked===total&&total>0) { bloc.classList.add('done');    bs.textContent='Complété'; }
-  else if (checked>0)                { bloc.classList.add('partial'); bs.textContent=checked+' / '+total+' éléments validés'; }
-  else                               {                                bs.textContent='À compléter'; }
+
+  const progEl = document.getElementById('czp-'+group);
+  if (progEl) progEl.textContent = skipped ? 'Ignoré' : checked+' / '+total;
+
+  // Statut du bloc parent
+  const blocId = group==='reg'||group==='ass' ? 'b-infos' : 'b-'+group;
+  updateBlocStatus(blocId);
   refresh();
+}
+
+function updateBlocStatus(blocId) {
+  // Calcul multi-groupes pour le bloc infos
+  let checked=0, total=0, anySkip=false;
+  if (blocId==='b-infos') {
+    ['reg','ass'].forEach(g => {
+      const items = document.querySelectorAll('#cl-'+g+' .ci');
+      total += items.length;
+      if (G[g].skip) { checked += items.length; anySkip=true; }
+      else { checked += document.querySelectorAll('#cl-'+g+' .ci.ok').length; }
+    });
+  } else {
+    const g = blocId.replace('b-','');
+    const items = document.querySelectorAll('#cl-'+g+' .ci');
+    total = items.length;
+    if (G[g] && G[g].skip) { checked = total; anySkip = true; }
+    else { checked = document.querySelectorAll('#cl-'+g+' .ci.ok').length; }
+  }
+  const bloc = document.getElementById(blocId);
+  const bs   = document.getElementById('bs-'+blocId.replace('b-',''));
+  bloc.classList.remove('done','partial');
+  if (checked===total&&total>0) { bloc.classList.add('done');    bs.textContent='Complété'; }
+  else if (checked>0)           { bloc.classList.add('partial'); bs.textContent=checked+' / '+total+' éléments validés'; }
+  else                          {                                bs.textContent='À compléter'; }
 }
 
 function selectVols(choice) {
   volsChoice = choice;
   ['a','b','c','d'].forEach(x => {
-    const btn = document.getElementById('btn-'+x);
-    btn.className = 'vols-btn' + (x===choice ? ' sel-'+choice : ' hidden');
-  });
-  document.getElementById('vols-change').classList.add('visible');
-  ['a','b','c','d'].forEach(x => {
+    document.getElementById('btn-'+x).className = 'vols-btn' + (x===choice ? ' sel-'+choice : ' hidden');
     document.getElementById('cas-'+x).classList.toggle('open', x===choice);
   });
   ['a','b','c','d'].filter(x=>x!==choice).forEach(x => {
     SUBS[x].forEach(s => document.querySelectorAll('#cl-'+s+' .ci').forEach(c=>c.classList.remove('ok')));
   });
+  document.getElementById('vols-change').classList.add('visible');
   updateVols();
 }
 
@@ -698,8 +758,7 @@ function resetVols() {
     SUBS[x].forEach(s => document.querySelectorAll('#cl-'+s+' .ci').forEach(c=>c.classList.remove('ok')));
   });
   document.getElementById('vols-change').classList.remove('visible');
-  const bloc = document.getElementById('b-vols');
-  bloc.classList.remove('done','partial');
+  document.getElementById('b-vols').classList.remove('done','partial');
   document.getElementById('bs-vols').textContent = 'À compléter';
   refresh();
 }
@@ -729,7 +788,8 @@ function updateVols() {
 function refresh() {
   const subs = volsChoice ? SUBS[volsChoice] : [];
   let done=0, total=0;
-  ['pass','visa','infos'].forEach(g => {
+
+  ['pass','visa','reg','ass'].forEach(g => {
     const items = document.querySelectorAll('#cl-'+g+' .ci');
     total += items.length;
     done  += G[g].skip ? items.length : document.querySelectorAll('#cl-'+g+' .ci.ok').length;
@@ -740,7 +800,7 @@ function refresh() {
   });
 
   if (!volsChoice) {
-    const fixTotal = ['pass','visa','infos'].reduce((a,g)=>a+document.querySelectorAll('#cl-'+g+' .ci').length,0);
+    const fixTotal = ['pass','visa','reg','ass'].reduce((a,g)=>a+document.querySelectorAll('#cl-'+g+' .ci').length,0);
     document.getElementById('gCount').textContent = done+' / '+fixTotal+'+';
     document.getElementById('gFill').style.width = fixTotal>0 ? Math.round(done/fixTotal*100)+'%' : '0%';
   } else {
@@ -750,19 +810,19 @@ function refresh() {
 
   // Recap
   const ci = (id,idx) => document.querySelectorAll('#cl-'+id+' .ci')[idx]?.classList.contains('ok');
-  const infoTransmises = volsChoice==='b' ? ci('b1',0) : volsChoice==='c' ? ci('c1',0) : volsChoice==='d' ? ci('d1',0) : false;
-  const enreg = volsChoice==='a' ? ci('a1',0) : volsChoice==='b' ? ci('b2',0) : volsChoice==='c' ? ci('c2',0) : volsChoice==='d' ? ci('d2',0) : false;
-  const transf = volsChoice==='a' ? ci('a2',0) : volsChoice==='b' ? ci('b3',0) : volsChoice==='c' ? ci('c3',0) : volsChoice==='d' ? ci('d3',0) : false;
+  const infoTransmises = volsChoice==='b'?ci('b1',0):volsChoice==='c'?ci('c1',0):volsChoice==='d'?ci('d1',0):false;
+  const enreg = volsChoice==='a'?ci('a1',0):volsChoice==='b'?ci('b2',0):volsChoice==='c'?ci('c2',0):volsChoice==='d'?ci('d2',0):false;
+  const transf = volsChoice==='a'?ci('a2',0):volsChoice==='b'?ci('b3',0):volsChoice==='c'?ci('c3',0):volsChoice==='d'?ci('d3',0):false;
 
   const map = [
-    { id:'r0', ok:ci('pass',3),   skip:G.pass.skip },
-    { id:'r1', ok:ci('pass',0),   skip:G.pass.skip },
-    { id:'r2', ok:infoTransmises, skip:volsChoice==='a' },
-    { id:'r3', ok:enreg,          skip:false },
-    { id:'r4', ok:transf,         skip:false },
-    { id:'r5', ok:ci('visa',0),   skip:G.visa.skip },
-    { id:'r6', ok:ci('infos',0),  skip:G.infos.skip },
-    { id:'r7', ok:ci('infos',2),  skip:G.infos.skip },
+    { id:'r0', ok:ci('pass',3),    skip:G.pass.skip },
+    { id:'r1', ok:ci('pass',0),    skip:G.pass.skip },
+    { id:'r2', ok:infoTransmises,  skip:volsChoice==='a' },
+    { id:'r3', ok:enreg,           skip:false },
+    { id:'r4', ok:transf,          skip:false },
+    { id:'r5', ok:ci('visa',0),    skip:G.visa.skip },
+    { id:'r6', ok:ci('reg',0),     skip:G.reg.skip },
+    { id:'r7', ok:ci('ass',0),     skip:G.ass.skip },
   ];
   let rdone=0;
   map.forEach(m => {
@@ -775,6 +835,8 @@ function refresh() {
   document.getElementById('rCount').textContent = rdone+' / '+map.length;
 }
 
+// Init statuts blocs infos
+updateBlocStatus('b-infos');
 refresh();
 </script>
 </body>
