@@ -32,8 +32,8 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .hdr-phone { background:var(--navy); color:var(--white); padding:3px 12px; border-radius:20px; font-size:11.5px; font-weight:600; text-decoration:none; }
 .hdr-right { font-size:13px; display:flex; gap:16px; align-items:center; }
 
-/* LAYOUT — centré desktop */
-.layout { display:flex; min-height:calc(100vh - 60px); max-width:1280px; margin:0 auto; }
+/* LAYOUT — full width comme le vrai espace client */
+.layout { display:flex; min-height:calc(100vh - 60px); width:100%; }
 .sb { width:220px; flex-shrink:0; background:var(--white); border-right:1px solid var(--gray-6); padding:24px 0; }
 .sb-nav { list-style:none; }
 .sb-nav a { display:block; padding:10px 20px; font-size:13px; font-weight:500; color:var(--navy); text-decoration:none; transition:background .12s; border-left:3px solid transparent; }
@@ -42,9 +42,9 @@ body { font-family:var(--font); background:var(--gray-bg); color:var(--navy); fo
 .sb-nav .muted { color:var(--gray-8); font-size:11.5px; padding:8px 20px; display:block; }
 .sb-sep { height:1px; background:var(--gray-1); margin:8px 0; }
 
-/* ZONE CENTRALE — limitée et centrée */
-.main-wrap { flex:1; display:flex; justify-content:center; padding:36px 32px 72px; background:var(--gray-bg); }
-.main { width:100%; max-width:680px; }
+/* ZONE PRINCIPALE — prend tout l'espace restant */
+.main-wrap { flex:1; padding:36px 48px 72px; background:var(--gray-bg); min-width:0; }
+.main { width:100%; max-width:900px; }
 
 /* BREADCRUMB */
 .bc { font-size:12px; color:var(--gray-8); margin-bottom:22px; display:flex; gap:7px; align-items:center; }
